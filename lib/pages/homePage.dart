@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tutorial/models/catelog.dart';
 import 'package:flutter_tutorial/widgets/drawer.dart';
-import 'package:flutter_tutorial/widgets/items.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -46,11 +45,44 @@ class _HomePageState extends State<HomePage> {
       body: (CatelogModel.items != null && CatelogModel.items.isNotEmpty)
           ? Padding(
               padding: const EdgeInsets.all(12.0),
-              child: ListView.builder(
+              /* Grid View */
+              child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10),
                   itemCount: CatelogModel.items.length,
                   itemBuilder: (context, index) {
-                    return ItemWidget(item: CatelogModel.items[index]);
+                    final item = CatelogModel.items[index];
+                    return Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: GridTile(
+                        header: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(color: Colors.deepPurple),
+                            child: Text(
+                              item.name,
+                              style: TextStyle(color: Colors.white),
+                            )),
+                        child: Image.network(item.image),
+                        footer: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(color: Colors.black),
+                            child: Text(
+                              item.price.toString(),
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    );
                   }),
+              /* List View */
+              // child: ListView.builder(
+              //     itemCount: CatelogModel.items.length,
+              //     itemBuilder: (context, index) {
+              //       return ItemWidget(item: CatelogModel.items[index]);
+              //     }),
             )
           : Center(child: CircularProgressIndicator()),
       drawer: MyDrawer(),
