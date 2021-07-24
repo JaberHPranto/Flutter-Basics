@@ -11,22 +11,19 @@ class ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        child: ListTile(
-          onTap: () {
-            print('Tapped');
-          },
-          leading: Image.network(item.image),
-          title: Text(item.name),
-          subtitle: Text(item.desc),
-          trailing: Text(
-            "\$${item.price}",
-            textScaleFactor: 1.2,
-            style: TextStyle(
-                color: Colors.deepPurple, fontWeight: FontWeight.bold),
-          ),
+    return Card(
+      child: ListTile(
+        onTap: () {
+          print('Tapped');
+        },
+        leading: Image.network(item.image),
+        title: Text(item.name),
+        subtitle: Text(item.desc),
+        trailing: Text(
+          "\$${item.price}",
+          textScaleFactor: 1.2,
+          style:
+              TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
         ),
       ),
     );
