@@ -11,7 +11,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Inventory Manager'),
       ),
-      body: Center(child: Container(child: Text('I am learning $language'))),
+      body:
+          Center(child: Container(child: Text('I am now learning $language'))),
       drawer: MyDrawer(),
     );
   }
