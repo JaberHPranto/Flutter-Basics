@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/models/catelog.dart';
-import 'package:flutter_tutorial/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetails extends StatelessWidget {
@@ -13,10 +12,12 @@ class HomeDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creemColor,
-      appBar: AppBar(),
+      backgroundColor: context.canvasColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
@@ -25,8 +26,8 @@ class HomeDetails extends StatelessWidget {
             ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.bluishColor),
+                        backgroundColor: MaterialStateProperty.all(
+                            context.theme.buttonColor),
                         shape: MaterialStateProperty.all(StadiumBorder())),
                     child: "Buy".text.make())
                 .wh(100, 50)
@@ -46,12 +47,21 @@ class HomeDetails extends StatelessWidget {
               edge: VxEdge.TOP,
               arcType: VxArcType.CONVEY,
               child: Container(
-                color: Colors.white,
+                color: context.cardColor,
                 width: context.screenWidth,
                 child: Column(
                   children: [
-                    item.name.text.xl4.bold.color(MyTheme.bluishColor).make(),
+                    item.name.text.xl4.bold
+                        .color(context.theme.accentColor)
+                        .make(),
                     item.desc.text.light.xl.make(),
+                    20.heightBox,
+                    "Lorem ipsum nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium q dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligulas eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, utate"
+                        .text
+                        .medium
+                        .make()
+                        .p16()
+                        .expand()
                   ],
                 ).py64(),
               ),

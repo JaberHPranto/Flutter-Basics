@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/utils/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: context.theme.canvasColor,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -85,7 +86,7 @@ class _LoginState extends State<Login> {
                     ),
                     // Material for giving effects
                     Material(
-                      color: Colors.deepPurple,
+                      color: context.theme.buttonColor,
                       borderRadius: BorderRadius.circular(isLoggedIn ? 50 : 8),
                       // Inkwell used for making a container clickable
                       child: InkWell(
