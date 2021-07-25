@@ -65,7 +65,7 @@
       "image": "https://images.samsung.com/is/image/samsung/p6pim/za/galaxy-s21/gallery/za-clear-cover-galaxy-s21-5g-ef-qg991ttegww-363168624?$720_576_PNG$"
     },
     {
-      "id": 1,
+      "id": 7,
       "name": "iPhone 12 Pro",
       "desc": "Apple iPhone 12th generation",
       "price": 999,
@@ -73,7 +73,7 @@
       "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1604021661000"
     },
     {
-      "id": 4,
+      "id": 8,
       "name": "Playstation 5",
       "desc": "Sony Playstation 5th generation",
       "price": 500,
