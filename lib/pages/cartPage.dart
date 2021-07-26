@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tutorial/models/cartModel.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
@@ -21,15 +22,22 @@ class CartPage extends StatelessWidget {
 class CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _cart = CartModel();
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$9999".text.xl5.make(),
+          "\$${_cart.totalPrice}".text.xl5.make(),
           30.widthBox,
           ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: "Buying not supported yet"
+                            .text
+                            .color(Colors.redAccent)
+                            .make()));
+                  },
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(context.theme.buttonColor)),
@@ -51,13 +59,20 @@ class Cartlist extends StatefulWidget {
 class _CartlistState extends State<Cartlist> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, inex) => ListTile(
-              leading: Icon(Icons.done),
-              trailing: IconButton(
-                  icon: Icon(Icons.remove_circle_outline), onPressed: () {}),
-              title: "Item".text.make(),
-            ));
+    final _cart = CartModel();
+    return _cart.items.isEmpty
+        ? "Nothing To Show".text.xl3.makeCentered()
+        : ListView.builder(
+            itemCount: _cart.items.length,
+            itemBuilder: (context, index) => ListTile(
+                  leading: Icon(Icons.done),
+                  trailing: IconButton(
+                      icon: Icon(Icons.remove_circle_outline),
+                      onPressed: () {
+                        _cart.removeItem(_cart.items[index]);
+                        setState(() {});
+                      }),
+                  title: _cart.items[index].name.text.make(),
+                ));
   }
 }

@@ -1,10 +1,13 @@
 class CatelogModel {
+  static final catModel = CatelogModel._internal();
+  CatelogModel._internal();
+  factory CatelogModel() => catModel;
   static List<Item> items = [];
 
-  static Item getItemById(int id) =>
+  Item getItemById(int id) =>
       items.firstWhere((element) => element.id == id, orElse: null);
 
-  static Item getItemByPosition(int pos) => items[pos];
+  Item getItemByPosition(int pos) => items[pos];
 }
 
 class Item {
