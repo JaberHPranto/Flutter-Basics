@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tutorial/core/store.dart';
+import 'package:flutter_tutorial/models/cartModel.dart';
 import 'package:flutter_tutorial/models/catelog.dart';
 import 'package:flutter_tutorial/utils/routes.dart';
 import 'package:flutter_tutorial/widgets/homeWidgets/catalogHeader.dart';
@@ -41,6 +43,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _cart = (VxState.store as MyStore).cart;
     // final dummyList = List.generate(15, (index) => CatelogModel.items[0]);
     /* UI With default flutter 
     return Scaffold(
@@ -98,12 +101,15 @@ class _HomePageState extends State<HomePage> {
 /* UI with velocity_x */
     return Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.cartRoute);
-          },
-          backgroundColor: context.theme.buttonColor,
-          child: Icon(CupertinoIcons.cart),
+        floatingActionButton: VxBuilder(
+          mutations: {AddMutation, RemoveMutation},
+          builder: (ctx, store, _) => FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.cartRoute);
+            },
+            backgroundColor: context.theme.buttonColor,
+            child: Icon(CupertinoIcons.cart),
+          ).badge(color: Vx.red500, size: 20, count: _cart.items.length),
         ),
         body: SafeArea(
           child: Container(
