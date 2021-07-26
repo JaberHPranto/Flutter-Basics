@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_tutorial/core/store.dart';
 import 'package:flutter_tutorial/models/cartModel.dart';
 import 'package:flutter_tutorial/models/catelog.dart';
 import 'package:flutter_tutorial/utils/routes.dart';
 import 'package:flutter_tutorial/widgets/homeWidgets/catalogHeader.dart';
 import 'package:flutter_tutorial/widgets/homeWidgets/catalogList.dart';
+import 'package:http/http.dart' as http;
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +19,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+// API
+  final url = "https://api.jsonbin.io/b/604dbddb683e7e079c4eefd3";
+
 // invokes before rendering -> like componentDidMount()
   @override
   void initState() {
@@ -31,8 +34,12 @@ class _HomePageState extends State<HomePage> {
   loadData() async {
     // just for loader, ignorable
     await Future.delayed(Duration(seconds: 3));
-    final catalogData =
-        await rootBundle.loadString("assets/files/catalog.json");
+    // final catalogData =
+    //     await rootBundle.loadString("assets/files/catalog.json");
+    final response = await http.get(Uri.parse(url));
+
+    final catalogData = response.body;
+
     final decodedData = jsonDecode(catalogData);
     var productsData = decodedData["products"];
     CatelogModel.items = List.from(productsData)
