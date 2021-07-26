@@ -1,13 +1,18 @@
+import 'package:flutter_tutorial/core/store.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'catelog.dart';
 
 class CartModel {
-  late CatelogModel _catalog;
+  CatelogModel _catalog = CatelogModel();
 
   // storing all ids
   List<int> _itemIds = [];
 
+  // ignore: unnecessary_getters_setters
   CatelogModel get catalog => _catalog;
 
+  // ignore: unnecessary_getters_setters
   set catalog(CatelogModel newCatalog) {
     _catalog = newCatalog;
   }
@@ -29,4 +34,18 @@ class CartModel {
   void removeItem(Item item) {
     _itemIds.remove(item.id);
   }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item item;
+
+  AddMutation(this.item);
+  @override
+  perform() {
+    store?.cart._itemIds.add(item.id);
+  }
+
+  // Future<void> perform() async {
+  //   store?.cart._itemIds.add(item.id);
+  // }
 }
