@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tutorial/core/store.dart';
 import 'package:flutter_tutorial/pages/cartPage.dart';
 import 'package:flutter_tutorial/pages/homePage.dart';
 import 'package:flutter_tutorial/pages/login.dart';
 import 'package:flutter_tutorial/utils/routes.dart';
 import 'package:flutter_tutorial/widgets/theme.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(VxState(store: MyStore(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

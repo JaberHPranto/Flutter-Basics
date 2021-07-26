@@ -1,11 +1,6 @@
 import 'catelog.dart';
 
 class CartModel {
-  // singalton class - obj will be created only once; not a good practice
-  static final cartModel = CartModel._internal();
-  CartModel._internal();
-  factory CartModel() => cartModel;
-
   late CatelogModel _catalog;
 
   // storing all ids
