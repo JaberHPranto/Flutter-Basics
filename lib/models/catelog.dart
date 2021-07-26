@@ -1,5 +1,10 @@
 class CatelogModel {
   static List<Item> items = [];
+
+  static Item getItemById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+
+  static Item getItemByPosition(int pos) => items[pos];
 }
 
 class Item {
