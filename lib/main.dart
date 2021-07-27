@@ -5,9 +5,11 @@ import 'package:flutter_tutorial/pages/homePage.dart';
 import 'package:flutter_tutorial/pages/login.dart';
 import 'package:flutter_tutorial/utils/routes.dart';
 import 'package:flutter_tutorial/widgets/theme.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(VxState(store: MyStore(), child: MyApp()));
 }
 
